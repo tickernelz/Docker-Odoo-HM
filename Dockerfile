@@ -11,13 +11,7 @@ RUN apt-get update \
         build-essential \
         libblas-dev \
         liblapack-dev \
-        #libsasl2-dev \
-        #python-dev \
         python3-dev \
-        #python3-wheel \
-        #libldap2-dev \
-        #libsnmp-dev \
-        #gfortran \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
@@ -47,6 +41,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
     && python3 -m pip install -U --force-reinstall pip \
     && python3 -m pip install \
+    html2text==2018.1.9 \
+    cryptography==2.1.4 \
     googlemaps==4.6.0 \
     fpdf==1.7.2 \
     pandas==1.1.5 \
@@ -59,6 +55,7 @@ RUN apt-get update \
     pikepdf==3.2.0 \
     Cython==0.29.27 \
     pmdarima==1.8.4 \
+    cryptography==2.1.4 \
     img2pdf==0.4.3
 
 # install latest postgresql-client
