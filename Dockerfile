@@ -11,13 +11,13 @@ RUN apt-get update \
         build-essential \
         libblas-dev \
         liblapack-dev \
-        libsasl2-dev \
-        python-dev \
+        #libsasl2-dev \
+        #python-dev \
         python3-dev \
-        python3-wheel \
-        libldap2-dev \
-        libsnmp-dev \
-        gfortran \
+        #python3-wheel \
+        #libldap2-dev \
+        #libsnmp-dev \
+        #gfortran \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
@@ -40,16 +40,26 @@ RUN apt-get update \
         python3-watchdog \
         python3-xlrd \
         python3-xlwt \
-        python3-pandas \
-        python3-statsmodels \
-        python3-cryptography \
-        python3-html2text \
         xz-utils \
     && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.buster_amd64.deb \
     && echo 'ea8277df4297afc507c61122f3c349af142f31e5 wkhtmltox.deb' | sha1sum -c - \
     && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
     && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
-    && pip3 install Cython pmdarima img2pdf
+    && python3 -m pip install -U --force-reinstall pip \
+    && python3 -m pip install \
+    googlemaps==4.6.0 \
+    fpdf==1.7.2 \
+    pandas==1.1.5 \
+    numpy==1.19.5 \
+    joblib==1.1.0 \
+    scipy==1.5.4 \
+    statsmodels==0.12.2 \
+    scikit-learn==0.24.2 \
+    Pillow==8.4.0 \
+    pikepdf==3.2.0 \
+    Cython==0.29.27 \
+    pmdarima==1.8.4 \
+    img2pdf==0.4.3
 
 # install latest postgresql-client
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
