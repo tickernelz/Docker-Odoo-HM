@@ -46,9 +46,6 @@ RUN set -x; \
         && apt-get install -y postgresql-client \
         && rm -rf /var/lib/apt/lists/*
 
-# Install rtlcss (on Debian buster)
-RUN npm install -g rtlcss
-
 # Install Odoo
 ENV ODOO_VERSION 14.0
 ARG ODOO_RELEASE=20210212
