@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM ubuntu:bionic
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
