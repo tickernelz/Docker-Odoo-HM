@@ -15,6 +15,7 @@ RUN set -x; \
             # python3.7 \
             # libpython3.7 \
             curl \
+            wget \
             gnupg \
             libpq-dev \
             libsasl2-2 \
@@ -51,6 +52,12 @@ ENV ODOO_VERSION 14.0
 ARG ODOO_RELEASE=20210212
 RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
     && apt-get update \
+    && wget http://ftp.kr.debian.org/debian/pool/main/i/init-system-helpers/init-system-helpers_1.60_all.deb \
+    && dpkg -i init-system-helpers_1.60_all.deb \
+    && wget http://kr.archive.ubuntu.com/ubuntu/pool/universe/x/xlwt/python3-xlwt_1.3.0-3_all.deb \
+    && dpkg -i python3-xlwt_1.3.0-3_all.deb \
+    && wget http://ftp.br.debian.org/debian/pool/main/p/python-num2words/python3-num2words_0.5.6-1_all.deb \
+    && dpkg -i python3-num2words_0.5.6-1_all.deb \
     && apt-get -y install --no-install-recommends ./odoo.deb \
     && rm -rf /var/lib/apt/lists/* odoo.deb
 
