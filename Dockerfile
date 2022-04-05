@@ -40,7 +40,7 @@ RUN set -x; \
 RUN set -x; \
         echo 'deb https://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > etc/apt/sources.list.d/pgdg.list \
         && export GNUPGHOME="$(mktemp -d)" \
-        && repokey='B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8' \
+        && repokey='7FCC7D46ACCC4CF8' \
         && gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "${repokey}" \
         && gpg --batch --armor --export "${repokey}" > /etc/apt/trusted.gpg.d/pgdg.gpg.asc \
         && rm -rf "$GNUPGHOME" \
@@ -53,7 +53,7 @@ RUN set -x; \
         wget -O - https://nightly.odoo.com/odoo.key | apt-key add - \
         &&echo "deb http://nightly.odoo.com/10.0/nightly/deb/ ./" >> /etc/apt/sources.list \
         && apt-get update \
-        && apt-get -y install --no-install-recommends -f odoo \
+        && apt-get -y install -f odoo \
         && rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Copy entrypoint script and Odoo configuration file
