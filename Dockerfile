@@ -14,11 +14,11 @@ RUN set -x; \
             ca-certificates \
             fonts-noto-cjk \
             curl \
+            wget \
             dirmngr \
             gnupg \
             node-less \
             npm \
-            sudo \
             python-gevent \
             python-ldap \
             python-pip \
