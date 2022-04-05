@@ -53,7 +53,7 @@ RUN set -x; \
         wget -O - https://nightly.odoo.com/odoo.key | apt-key add - \
         &&echo "deb http://nightly.odoo.com/10.0/nightly/deb/ ./" >> /etc/apt/sources.list \
         && apt-get update \
-        && apt-get -y install -f odoo \
+        && apt-get -y install --no-install-recommends -f odoo \
         && rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Copy entrypoint script and Odoo configuration file
