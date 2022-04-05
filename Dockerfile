@@ -27,7 +27,7 @@ RUN set -x; \
             python-vobject \
             python-watchdog \
             python-dev \
-        && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb \
+        && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb \
         && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
         && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py \
