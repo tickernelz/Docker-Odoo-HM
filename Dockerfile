@@ -1,10 +1,11 @@
-FROM debian:buster-slim
-LABEL maintainer="Entot Skuy"
+FROM ubuntu:bionic
+LABEL maintainer="tickernelz <zhafronadani@gmail.com>"
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN set -x; \
@@ -25,8 +26,7 @@ RUN set -x; \
             python-vobject \
             python-watchdog \
             python-dev \
-        && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.buster_amd64.deb \
-        && echo 'ea8277df4297afc507c61122f3c349af142f31e5 wkhtmltox.deb' | sha1sum -c - \
+        && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb \
         && dpkg --force-depends -i wkhtmltox.deb \
         && apt-get -y install -f --no-install-recommends \
         && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false npm \
@@ -35,19 +35,17 @@ RUN set -x; \
         && python2 get-pip.py \
         && pip install psycogreen==1.0
 
-# install latest postgresql-client
+# Install latest postgresql-client
 RUN set -x; \
-        echo 'deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
-        && GNUPGHOME="$(mktemp -d)" \
-        && export GNUPGHOME \
+        echo 'deb https://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main' > etc/apt/sources.list.d/pgdg.list \
+        && export GNUPGHOME="$(mktemp -d)" \
         && repokey='B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8' \
         && gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "${repokey}" \
         && gpg --batch --armor --export "${repokey}" > /etc/apt/trusted.gpg.d/pgdg.gpg.asc \
         && gpgconf --kill all \
         && rm -rf "$GNUPGHOME" \
         && apt-get update  \
-        && apt-get install --no-install-recommends -y postgresql-client \
-        && rm -f /etc/apt/sources.list.d/pgdg.list \
+        && apt-get install -y postgresql-client \
         && rm -rf /var/lib/apt/lists/*
 
 # Install Odoo
