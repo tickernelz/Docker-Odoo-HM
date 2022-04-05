@@ -21,6 +21,9 @@ RUN set -x; \
             gnupg \
             node-less \
             npm \
+            gettext \
+            build-essential \
+            librsync-dev \
             python-gevent \
             python-ldap \
             python-pip \
@@ -34,7 +37,9 @@ RUN set -x; \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
         && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py \
         && python2 get-pip.py \
-        && pip install psycogreen==1.0
+        && python -m pip install psycogreen==1.0 openpyxl==2.0.2 xlrd==1.0.0 cachetools==2.0.1 unittest2 pdfkit==0.6.1 duplicity==0.8.20 BeautifulSoup==3.2.2 bcrypt==3.1.7 beautifulsoup4==4.9.3 num2words==0.5.10
+
+
 
 # Install latest postgresql-client
 RUN set -x; \
@@ -53,10 +58,17 @@ RUN set -x; \
 # Install Odoo
 RUN set -x; \
         wget -O - https://nightly.odoo.com/odoo.key | apt-key add - \
-        &&echo "deb http://nightly.odoo.com/10.0/nightly/deb/ ./" >> /etc/apt/sources.list \
+        && echo "deb http://nightly.odoo.com/10.0/nightly/deb/ ./" >> /etc/apt/sources.list \
         && apt-get update \
         && apt-get -y install -f odoo \
         && rm -rf /var/lib/apt/lists/* odoo.deb
+
+# Remove Unused Modules
+RUN set -x; \
+        shopt -s extglob \
+        && cd /usr/lib/python2.7/dist-packages/odoo/addons \
+        && rm -r !(account_cash_basis_base_account|account_lock|auth_signup|base|bus|l10n_be_intrastat_2019|l10n_fr_certification|l10n_fr_pos_cert|l10n_fr_sale_closing|mail|opt|payment_stripe_sca|test_access_rights|test_assetsbundle|test_convert|test_converter|test_documentation_examples|test_exceptions|test_impex|test_inherit|test_inherits|test_limits|test_lint|test_mimetypes|test_new_api|test_pylint|test_read_group|test_rpc|test_uninstall|test_workflow|website|__init__.py) \
+        && cd /
 
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
