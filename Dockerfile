@@ -17,6 +17,7 @@ RUN set -x; \
             wget \
             dirmngr \
             gnupg \
+            gpgconf \
             node-less \
             npm \
             python-gevent \
