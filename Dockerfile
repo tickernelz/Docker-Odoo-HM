@@ -47,7 +47,6 @@ RUN set -x; \
         && apt-get install -y postgresql-client \
         && rm -rf /var/lib/apt/lists/*
 
-ENV PATH=/usr/local/bin:$PATH
 # Install Odoo
 ENV ODOO_VERSION 10.0
 ARG ODOO_RELEASE=20200827
