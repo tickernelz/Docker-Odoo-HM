@@ -65,9 +65,18 @@ RUN set -x; \
 
 # Remove Unused Modules
 RUN set -x; \
-        shopt -s extglob \
+        mkdir /mnt/temp \
         && cd /usr/lib/python2.7/dist-packages/odoo/addons \
-        && rm -r !("account_cash_basis_base_account|account_lock|auth_signup|base|bus|l10n_be_intrastat_2019|l10n_fr_certification|l10n_fr_pos_cert|l10n_fr_sale_closing|mail|opt|payment_stripe_sca|test_access_rights|test_assetsbundle|test_convert|test_converter|test_documentation_examples|test_exceptions|test_impex|test_inherit|test_inherits|test_limits|test_lint|test_mimetypes|test_new_api|test_pylint|test_read_group|test_rpc|test_uninstall|test_workflow|website|__init__.py")
+        && mv {account_cash_basis_base_account,account_lock,auth_signup,base,bus,l10n_be_intrastat_2019,l10n_fr_certification,l10n_fr_pos_cert,l10n_fr_sale_closing,mail,opt,payment_stripe_sca,test_access_rights,test_assetsbundle,test_convert,test_converter,test_documentation_examples,test_exceptions,test_impex,test_inherit,test_inherits,test_limits,test_lint,test_mimetypes,test_new_api,test_pylint,test_read_group,test_rpc,test_uninstall,test_workflow,website,__init__.py} /mnt/temp \
+        && rm -r * \
+        && cd /mnt/temp \
+        && mv {account_cash_basis_base_account,account_lock,auth_signup,base,bus,l10n_be_intrastat_2019,l10n_fr_certification,l10n_fr_pos_cert,l10n_fr_sale_closing,mail,opt,payment_stripe_sca,test_access_rights,test_assetsbundle,test_convert,test_converter,test_documentation_examples,test_exceptions,test_impex,test_inherit,test_inherits,test_limits,test_lint,test_mimetypes,test_new_api,test_pylint,test_read_group,test_rpc,test_uninstall,test_workflow,website,__init__.py} /usr/lib/python2.7/dist-packages/odoo/addons
+
+# # Remove Unused Modules
+# RUN set -x; \
+#         shopt -s extglob \
+#         && cd /usr/lib/python2.7/dist-packages/odoo/addons \
+#         && rm -r !("account_cash_basis_base_account|account_lock|auth_signup|base|bus|l10n_be_intrastat_2019|l10n_fr_certification|l10n_fr_pos_cert|l10n_fr_sale_closing|mail|opt|payment_stripe_sca|test_access_rights|test_assetsbundle|test_convert|test_converter|test_documentation_examples|test_exceptions|test_impex|test_inherit|test_inherits|test_limits|test_lint|test_mimetypes|test_new_api|test_pylint|test_read_group|test_rpc|test_uninstall|test_workflow|website|__init__.py")
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 # Copy entrypoint script and Odoo configuration file
