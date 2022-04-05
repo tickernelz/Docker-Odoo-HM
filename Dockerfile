@@ -17,7 +17,6 @@ RUN set -x; \
             wget \
             dirmngr \
             gnupg \
-            gpgconf \
             node-less \
             npm \
             python-gevent \
@@ -42,7 +41,6 @@ RUN set -x; \
         && repokey='B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8' \
         && gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "${repokey}" \
         && gpg --batch --armor --export "${repokey}" > /etc/apt/trusted.gpg.d/pgdg.gpg.asc \
-        && gpgconf --kill all \
         && rm -rf "$GNUPGHOME" \
         && apt-get update  \
         && apt-get install -y postgresql-client \
