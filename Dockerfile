@@ -40,8 +40,10 @@ RUN set -x; \
 RUN set -x; \
         echo 'deb https://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > etc/apt/sources.list.d/pgdg.list \
         && export GNUPGHOME="$(mktemp -d)" \
+        && apt-get update  \
         && repokey='7FCC7D46ACCC4CF8' \
         && gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "${repokey}" \
+        && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7FCC7D46ACCC4CF8 \
         && gpg --batch --armor --export "${repokey}" > /etc/apt/trusted.gpg.d/pgdg.gpg.asc \
         && rm -rf "$GNUPGHOME" \
         && apt-get update  \
