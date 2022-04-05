@@ -11,6 +11,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN set -x; \
         apt-get update \
         && apt-get install -y --no-install-recommends \
+            apt-transport-https \
+            libcurl3-gnutls \
             ca-certificates \
             fonts-noto-cjk \
             curl \
