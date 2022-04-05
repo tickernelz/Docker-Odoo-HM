@@ -48,13 +48,11 @@ RUN set -x; \
         && rm -rf /var/lib/apt/lists/*
 
 # Install Odoo
-ENV ODOO_VERSION 10.0
-ARG ODOO_RELEASE=20200827
 RUN set -x; \
-        curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
-        && dpkg --force-depends -i odoo.deb \
+        wget -O - https://nightly.odoo.com/odoo.key | apt-key add - \
+        &&echo "deb http://nightly.odoo.com/10.0/nightly/deb/ ./" >> /etc/apt/sources.list \
         && apt-get update \
-        && apt-get -y install -f \
+        && apt-get -y install -f odoo \
         && rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Copy entrypoint script and Odoo configuration file
