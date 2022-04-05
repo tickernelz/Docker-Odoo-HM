@@ -62,9 +62,6 @@ RUN set -x; \
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
 
-# Create User Odoo
-RUN useradd -ms /bin/bash odoo
-
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN chown odoo /etc/odoo/odoo.conf \
     && mkdir -p /mnt/extra-addons \
