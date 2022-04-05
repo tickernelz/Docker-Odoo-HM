@@ -18,6 +18,7 @@ RUN set -x; \
             gnupg \
             node-less \
             npm \
+            sudo \
             python-gevent \
             python-ldap \
             python-pip \
