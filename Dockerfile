@@ -15,6 +15,8 @@ RUN set -x; \
             libcurl3-gnutls \
             ca-certificates \
             fonts-noto-cjk \
+            libcurl4-openssl-dev \
+            libssl-dev \
             curl \
             wget \
             dirmngr \
@@ -37,7 +39,7 @@ RUN set -x; \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
         && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py \
         && python2 get-pip.py \
-        && python -m pip install psycogreen==1.0 openpyxl==2.0.2 xlrd==1.0.0 cachetools==2.0.1 unittest2 pdfkit==0.6.1 duplicity==0.8.20 BeautifulSoup==3.2.2 bcrypt==3.1.7 beautifulsoup4==4.9.3 num2words==0.5.10
+        && python -m pip install psycogreen==1.0 openpyxl==2.0.2 xlrd==1.0.0 cachetools==2.0.1 unittest2 pdfkit==0.6.1 duplicity==0.8.20 BeautifulSoup==3.2.2 bcrypt==3.1.7 beautifulsoup4==4.9.3 num2words==0.5.10 pycurl
 
 
 
