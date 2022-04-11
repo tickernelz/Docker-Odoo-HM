@@ -13,8 +13,6 @@ RUN set -x; \
             python3-wheel \
             python3-setuptools \
             python3-pip \
-            # python3.7 \
-            # libpython3.7 \
             curl \
             wget \
             gnupg \
@@ -26,9 +24,7 @@ RUN set -x; \
             libxslt1.1 \
             npm \
             node-less \
-            # python3-yaml \
         && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1 \
-        # && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2 \
         && update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1 \
         && update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 2 \
         && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.bionic_amd64.deb \
@@ -61,7 +57,7 @@ RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/od
     && apt-get -y install --no-install-recommends ./python3-num2words_0.5.6-1_all.deb \
     && apt-get -y install --no-install-recommends ./odoo.deb \
     && pip3 install --upgrade pip \
-    && pip3 install pdfminer.six phonenumbers==8.12.42 pandas==1.1.5 statsmodels==0.12.2 pmdarima==1.8.4 img2pdf==0.4.3 fpdf==1.7.2 googlemaps==4.6.0 \
+    && pip3 install pdfminer.six deep_translator netifaces phonenumbers==8.12.42 pandas==1.1.5 statsmodels==0.12.2 pmdarima==1.8.4 img2pdf==0.4.3 fpdf==1.7.2 googlemaps==4.6.0 \
     && rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Copy entrypoint script and Odoo configuration file
