@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ bionic-test ]
+    branches: [ 14-hm ]
 
 jobs:
 
