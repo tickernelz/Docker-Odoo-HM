@@ -60,7 +60,7 @@ RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/od
 
 # Install PIP Modules
 RUN pip3 install --upgrade pip \
-    && pip3 install pdfminer.six deep_translator netifaces geopy dataclasses wdb phonenumbers==8.12.42 pandas==1.1.5 statsmodels==0.12.2 pmdarima==1.8.4 img2pdf==0.4.3 fpdf==1.7.2 googlemaps==4.6.0 \
+    && python3 -m pip install pdfminer.six deep_translator netifaces geopy dataclasses wdb phonenumbers==8.12.42 pandas==1.1.5 statsmodels==0.12.2 pmdarima==1.8.4 img2pdf==0.4.3 fpdf==1.7.2 googlemaps==4.6.0 \
     && python3 -m pip cache purge \
     && rm -rf /var/lib/apt/lists/*
 
