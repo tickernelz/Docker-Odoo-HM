@@ -64,7 +64,7 @@ RUN set -x; \
 RUN set -x; \
         curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py \
         && python2 get-pip.py \
-        && python2 -m pip install numpy psycogreen==1.0 openpyxl==2.0.2 xlrd==1.0.0 cachetools==2.0.1 unittest2 pdfkit==0.6.1 duplicity==0.8.20 BeautifulSoup==3.2.2 bcrypt==3.1.7 beautifulsoup4==4.9.3 num2words==0.5.10 pycurl wdb \
+        && python2 -m pip install simplejson numpy psycogreen==1.0 openpyxl==2.0.2 xlrd==1.0.0 cachetools==2.0.1 unittest2 pdfkit==0.6.1 duplicity==0.8.20 BeautifulSoup==3.2.2 bcrypt==3.1.7 beautifulsoup4==4.9.3 num2words==0.5.10 pycurl wdb \
         && python2 -m pip cache purge \
         && rm -rf /var/lib/apt/lists/*
 
@@ -72,10 +72,10 @@ RUN set -x; \
 RUN set -x; \
         mkdir /mnt/temp \
         && cd /usr/lib/python2.7/dist-packages/odoo/addons \
-        && mv {account_cash_basis_base_account,account_lock,auth_signup,base,bus,l10n_be_intrastat_2019,l10n_fr_certification,l10n_fr_pos_cert,l10n_fr_sale_closing,mail,payment_stripe_sca,test_access_rights,test_assetsbundle,test_convert,test_converter,test_documentation_examples,test_exceptions,test_impex,test_inherit,test_inherits,test_limits,test_lint,test_mimetypes,test_new_api,test_pylint,test_read_group,test_rpc,test_uninstall,test_workflow,website,__init__.py} /mnt/temp \
+        && mv {account_cash_basis_base_account,account_lock,auth_signup,base,bus,l10n_be_intrastat_2019,l10n_fr_certification,mail,payment_stripe_sca,test_access_rights,test_assetsbundle,test_convert,test_converter,test_documentation_examples,test_exceptions,test_impex,test_inherit,test_inherits,test_limits,test_lint,test_mimetypes,test_new_api,test_pylint,test_read_group,test_rpc,test_uninstall,test_workflow,website,__init__.py} /mnt/temp \
         && rm -r * \
         && cd /mnt/temp \
-        && mv {account_cash_basis_base_account,account_lock,auth_signup,base,bus,l10n_be_intrastat_2019,l10n_fr_certification,l10n_fr_pos_cert,l10n_fr_sale_closing,mail,payment_stripe_sca,test_access_rights,test_assetsbundle,test_convert,test_converter,test_documentation_examples,test_exceptions,test_impex,test_inherit,test_inherits,test_limits,test_lint,test_mimetypes,test_new_api,test_pylint,test_read_group,test_rpc,test_uninstall,test_workflow,website,__init__.py} /usr/lib/python2.7/dist-packages/odoo/addons
+        && mv {account_cash_basis_base_account,account_lock,auth_signup,base,bus,l10n_be_intrastat_2019,l10n_fr_certification,mail,payment_stripe_sca,test_access_rights,test_assetsbundle,test_convert,test_converter,test_documentation_examples,test_exceptions,test_impex,test_inherit,test_inherits,test_limits,test_lint,test_mimetypes,test_new_api,test_pylint,test_read_group,test_rpc,test_uninstall,test_workflow,website,__init__.py} /usr/lib/python2.7/dist-packages/odoo/addons
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 # Copy entrypoint script and Odoo configuration file
