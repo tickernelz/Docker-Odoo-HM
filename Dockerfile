@@ -64,7 +64,7 @@ RUN set -x; \
 RUN set -x; \
         curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py \
         && python2 get-pip.py \
-        && python2 -m pip install simplejson numpy psycogreen==1.0 openpyxl==2.0.2 xlrd==1.0.0 cachetools==2.0.1 unittest2 pdfkit==0.6.1 duplicity==0.8.20 BeautifulSoup==3.2.2 bcrypt==3.1.7 beautifulsoup4==4.9.3 num2words==0.5.10 pycurl wdb \
+        && python2 -m pip install qrcode==5.3 ofxparse==0.16 pyserial==3.1.1 Python-Chart==1.39 pyusb==1.0.0 simplejson numpy psycogreen==1.0 openpyxl==2.0.2 xlrd==1.0.0 cachetools==2.0.1 unittest2 pdfkit==0.6.1 duplicity==0.8.20 BeautifulSoup==3.2.2 bcrypt==3.1.7 beautifulsoup4==4.9.3 num2words==0.5.10 pycurl wdb \
         && python2 -m pip cache purge \
         && rm -rf /var/lib/apt/lists/*
 
